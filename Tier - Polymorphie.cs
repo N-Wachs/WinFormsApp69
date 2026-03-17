@@ -1,12 +1,12 @@
-﻿// Vererbung bsp. Tiere
+﻿// Polymorphie bsp. Tiere
 
-namespace WinFormsApp69;
+namespace Polymorphie;
 
-// Basisklasse für die verschiedenen Tiere
-public class Tier
+// Basisklasse für die verschiedenen Tiere. 'Abstract' für die Polymorphie.
+public abstract class Tier
 {
     // Felder die jedes Tier hat
-    #region
+    #region Felder
     private DateTime _geburtsDatum;
     private string _name;
     #endregion
@@ -32,10 +32,14 @@ public class Tier
 
     #region Worker
     // Funuktion für die alle Tiere können, damit sie von den Kind Klassen geerbt werden kann
-    public void Laufen()
+    // 'Virtual' damit die Kind Klassen sie überschreiben können, aber nicht müssen
+    public virtual void Laufen()
     {
         Console.WriteLine($"{Name} läuft.");
     }
+
+    // Abstrakte-Funktion mit Polymorphie 2 grades die JEDE Kindklasse haben muss
+    public abstract void MachtGeräusch();
     #endregion
 }
 
@@ -68,13 +72,17 @@ public class Katze : Tier
     #endregion
 
     #region Worker
-    // Funktion die nur die Katze kann, damit sie von der Klasse selbst genutzt werden kann
-    public void Schnurren()
+    // Die Abstrakte-Funktion der Basisklasse wird hier gesetzt
+    public override void MachtGeräusch()
     {
-        if (IstSchnurrend)
-            Console.WriteLine($"{base.Name} schnurrt.");
-        else
-            Console.WriteLine($"{base.Name} schnurrt nicht.");
+        Console.WriteLine($"{base.Name} schnurrt.");
+    }
+
+    // Die Virtuelle-Funktion der Basisklasse wird hier überschrieben, damit die Katze leise schleicht, anstatt normal zu laufen
+    // Somit hat die Katze eine eigene Implementierung der Funktion, die von der Basisklasse geerbt wurde, aber nicht die gleiche wie die anderen Tiere ist
+    public override void Laufen()
+    {
+        Console.WriteLine($"{base.Name} schleicht leise.");
     }
     #endregion
 }
@@ -102,13 +110,10 @@ public class Hund : Tier
     #endregion
 
     #region Worker
-    // Funktion die nur der Hund kann, damit sie von der Klasse selbst genutzt werden kann
-    public void Bellen()
+    // Die Abstrakte-Funktion der Basisklasse wird hier gesetzt
+    public override void MachtGeräusch()
     {
-        if (IstHalil)
-            Console.WriteLine($"{base.Name} bellt.");
-        else
-            Console.WriteLine($"{base.Name} bellt nicht.");
+        Console.WriteLine($"{base.Name} bellt.");
     }
     #endregion
 }

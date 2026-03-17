@@ -1,6 +1,6 @@
-﻿// Agregation
+﻿// Aggregationen 
 
-namespace WinFormsApp69;
+namespace Aggregationen;
 
 /// <summary>
 /// Eine Beispiel Objektklasse, die ein Auto repräsentiert. 
