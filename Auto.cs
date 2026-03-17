@@ -1,4 +1,6 @@
-﻿namespace WinFormsApp69;
+﻿// Agregation
+
+namespace WinFormsApp69;
 
 /// <summary>
 /// Eine Beispiel Objektklasse, die ein Auto repräsentiert. 
